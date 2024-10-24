@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class CircularMovement : MonoBehaviour
 {
     [SerializeField] Transform center;
@@ -17,6 +18,8 @@ public class CircularMovement : MonoBehaviour
     float currentAngle;
     [SerializeField]
     Vector3 center_position;
+
+    Rigidbody2D rb;
 
     public Transform Center
     {
@@ -37,6 +40,7 @@ public class CircularMovement : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         Move(currentAngle);
     }
 
@@ -55,11 +59,12 @@ public class CircularMovement : MonoBehaviour
 
     private void Move(float degrees)
     {
+        if (!rb) { return; }
         float rad = Mathf.Deg2Rad * degrees;
         float x = Mathf.Cos(rad);
         float y = Mathf.Sin(rad);
         Vector3 velocity = radius * new Vector3(x, y, 0);
-        transform.position = center_position + velocity;
+        rb.MovePosition(center_position + velocity);
     }
 
     public void ChangeDirection()
