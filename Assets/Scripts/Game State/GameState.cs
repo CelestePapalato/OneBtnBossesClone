@@ -1,45 +1,48 @@
 using System;
 using UnityEngine;
 
-public class GameState : MonoBehaviour
+namespace GameFlow
 {
-    public static GameState Instance { get; private set; }
-
-    public enum STATE { GAME_ON_WAIT, GAME_START, GAME_RESTART, GAME_END }
-
-    private STATE state;
-
-    public event Action OnGameStart;
-    public event Action OnGameRestart;
-    public event Action OnGameEnd;
-
-    private void Awake()
+    public class GameState : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        public static GameState Instance { get; private set; }
+
+        public enum STATE { GAME_ON_WAIT, GAME_START, GAME_RESTART, GAME_END }
+
+        private STATE state;
+
+        public event Action OnGameStart;
+        public event Action OnGameRestart;
+        public event Action OnGameEnd;
+
+        private void Awake()
         {
-            Destroy(this);
-            return;
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+                return;
+            }
+
+            Instance = this;
+            state = STATE.GAME_ON_WAIT;
+            Time.timeScale = 0f;
         }
 
-        Instance = this;
-        state = STATE.GAME_ON_WAIT;
-        Time.timeScale = 0f;
-    }
-
-    public void StartGame()
-    {
-        if (state == STATE.GAME_ON_WAIT)
+        public void StartGame()
         {
-            Time.timeScale = 1f;
-            OnGameStart?.Invoke();
+            if (state == STATE.GAME_ON_WAIT)
+            {
+                Time.timeScale = 1f;
+                OnGameStart?.Invoke();
+            }
         }
-    }
 
-    public void RestartGame()
-    {
-        if (state == STATE.GAME_RESTART)
+        public void RestartGame()
         {
-            OnGameRestart?.Invoke();
+            if (state == STATE.GAME_RESTART)
+            {
+                OnGameRestart?.Invoke();
+            }
         }
     }
 }
