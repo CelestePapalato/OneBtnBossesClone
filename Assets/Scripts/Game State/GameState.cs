@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameFlow
 {
@@ -11,9 +12,9 @@ namespace GameFlow
 
         private STATE state;
 
-        public event Action OnGameStart;
-        public event Action OnGameRestart;
-        public event Action OnGameEnd;
+        public UnityEvent OnGameStart;
+        public UnityEvent OnGameRestart;
+        public UnityEvent OnGameEnd;
 
         private void Awake()
         {

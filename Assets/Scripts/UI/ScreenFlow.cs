@@ -28,16 +28,6 @@ namespace GameUI
             }
         }
 
-        private void OnEnable()
-        {
-            GameFlow.GameState.Instance.OnGameEnd += ShowResults;
-        }
-
-        private void OnDisable()
-        {
-            GameFlow.GameState.Instance.OnGameEnd += ShowResults;
-        }
-
         private void Start()
         {
             CollectCanvases();
@@ -64,13 +54,13 @@ namespace GameUI
             canvases = GetComponentsInChildren<Canvas>();
         }
 
-        private void ShowStartScreen()
+        public void ShowStartScreen()
         {
             Canvas[] active_canvases = { StartScreen, Timer };
             EnableCanvas(active_canvases);
         }
 
-        private void ShowResults()
+        public void ShowResults()
         {
             Canvas[] active_canvases = { ResultsScreen };
             EnableCanvas(active_canvases);

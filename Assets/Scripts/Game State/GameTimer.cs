@@ -32,16 +32,16 @@ namespace GameFlow
 
         private void OnEnable()
         {
-            GameState.Instance.OnGameStart += StartTimer;
-            GameState.Instance.OnGameEnd += EndTimer;
-            GameState.Instance.OnGameRestart += EndTimer;
+            GameState.Instance.OnGameStart.AddListener(StartTimer);
+            GameState.Instance.OnGameEnd.AddListener(EndTimer);
+            GameState.Instance.OnGameRestart.AddListener(EndTimer);
         }
 
         private void OnDisable()
         {
-            GameState.Instance.OnGameStart -= StartTimer;
-            GameState.Instance.OnGameEnd -= EndTimer;
-            GameState.Instance.OnGameRestart -= EndTimer;
+            GameState.Instance.OnGameStart?.RemoveListener(StartTimer);
+            GameState.Instance.OnGameEnd?.RemoveListener(EndTimer);
+            GameState.Instance.OnGameRestart?.RemoveListener(EndTimer);
         }
 
         private IEnumerator EnableTimer()

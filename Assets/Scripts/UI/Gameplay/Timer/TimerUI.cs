@@ -26,7 +26,7 @@ namespace GameUI
             int minutes = (int)time / 60;
             float seconds = time % 60;
 
-            timer_ui.text = minutes + " : " + seconds.ToString("0.00");
+            timer_ui.text = minutes + " : " + seconds.ToString("0.0");
         }
     }
 }
