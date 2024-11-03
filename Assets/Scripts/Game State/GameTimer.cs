@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
+using GameUI;
 
 namespace GameFlow
 { 
@@ -69,6 +70,14 @@ namespace GameFlow
         {
             if (timerCoroutine == null) { return; }
             StopCoroutine(timerCoroutine);
+        }
+
+        public static string TimeToString(float time)
+        {
+            int minutes = (int)time / 60;
+            float seconds = time % 60;
+
+            return minutes + " : " + seconds.ToString("0.0");
         }
     }
 }

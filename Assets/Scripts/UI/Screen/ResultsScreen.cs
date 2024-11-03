@@ -4,6 +4,8 @@ using GameFlow;
 
 public class ResultsScreen : MonoBehaviour
 {
+    Canvas canvas;
+
     [SerializeField]
     GameObject WinScreen;
     [SerializeField]
@@ -19,7 +21,12 @@ public class ResultsScreen : MonoBehaviour
         WinScreen?.SetActive(false);
         LoseScreen?.SetActive(false);
         newRecordText?.gameObject.SetActive(false);
-        timeText?.gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        canvas = GetComponent<Canvas>();
+        canvas.enabled = false;
     }
 
     private void OnEnable()
@@ -34,9 +41,9 @@ public class ResultsScreen : MonoBehaviour
 
     private void ShowScreen(bool state, bool newRecord)
     {
-        timeText.gameObject.SetActive(true);
+        canvas.enabled = true;
 
-        timeText.text = PlayerPrefs.GetFloat("RecordTime").ToString();
+        timeText.text = GameTimer.TimeToString(GameTimer.Instance.Timer);
 
         if (!state)
         {

@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 358006471}
   - component: {fileID: 358006470}
   m_Layer: 8
-  m_Name: Hitbox
+  m_Name: Hurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1437,6 +1437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0732a334174c0da4c83550dcef2f0de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 1707398503}
+  enemyHealth: {fileID: 358006470}
   OnGameStart:
     m_PersistentCalls:
       m_Calls: []
@@ -1624,7 +1626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1130306411
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1873,7 +1875,7 @@ GameObject:
   - component: {fileID: 1433884592}
   - component: {fileID: 1433884591}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Restart Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1943,10 +1945,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 835951447}
-        m_TargetAssemblyTypeName: GameState, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
+      - m_Target: {fileID: 1740880632}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1955,10 +1957,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1740880632}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 835951447}
+        m_TargetAssemblyTypeName: GameFlow.GameState, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2085,7 +2087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581c0000b87af5c469a8489e9f0edde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   invincibilityTimer: 0
 --- !u!1 &1740880632
 GameObject:
@@ -2383,7 +2385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1968252223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2421,7 +2423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1988314224
 RectTransform:
   m_ObjectHideFlags: 0

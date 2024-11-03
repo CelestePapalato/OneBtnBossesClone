@@ -1,3 +1,4 @@
+using GameFlow;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,10 +24,8 @@ namespace GameUI
         private void UpdateTimerUI(float time)
         {
             if (!timer_ui) { return; }
-            int minutes = (int)time / 60;
-            float seconds = time % 60;
 
-            timer_ui.text = minutes + " : " + seconds.ToString("0.0");
+            timer_ui.text = GameTimer.TimeToString(time);
         }
     }
 }
