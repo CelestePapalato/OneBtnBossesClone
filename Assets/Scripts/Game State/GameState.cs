@@ -15,6 +15,7 @@ namespace GameFlow
         public UnityEvent OnGameStart;
         public UnityEvent OnGameRestart;
         public UnityEvent OnGameEnd;
+        public event Action<bool, bool> OnGameSessionEnd; // el bool indica si fue una victoria o derrota y si superó su tiempo
 
         private void Awake()
         {
