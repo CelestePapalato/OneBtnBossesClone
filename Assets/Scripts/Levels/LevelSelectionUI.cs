@@ -16,6 +16,7 @@ public class LevelSelectionUI : MonoBehaviour
         foreach (var levelData in levelsData.LevelScenes) {
             LevelButtonUI instance = Instantiate(levelButtonUI, buttonsParent);
             instance.SceneAsset = levelData;
+            if (!PlayerPrefs.HasKey(levelData.name)) { break; }
         }
     }
 

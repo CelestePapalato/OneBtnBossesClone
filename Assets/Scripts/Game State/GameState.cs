@@ -80,9 +80,10 @@ namespace GameFlow
         private bool UpdateTimeRecord()
         {
             float time = GameTimer.Instance.Timer;
-            if(time < PlayerPrefs.GetFloat("RecordTime") || !PlayerPrefs.HasKey("RecordTime"))
+            string playerPrefKey = SceneManager.GetActiveScene().name; 
+            if(time < PlayerPrefs.GetFloat(playerPrefKey) || !PlayerPrefs.HasKey(playerPrefKey))
             {
-                PlayerPrefs.SetFloat("RecordTime", time);
+                PlayerPrefs.SetFloat(playerPrefKey, time);
                 PlayerPrefs.Save();
                 return true;
             }
