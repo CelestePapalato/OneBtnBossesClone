@@ -15,11 +15,16 @@ public class CircularMovement : MonoBehaviour
     [SerializeField]
     int direction = 1;
     [SerializeField]
+    bool directionChangeEnabled = true;
+    [SerializeField]
     float currentAngle;
     [SerializeField]
     Vector3 center_position;
 
     Rigidbody2D rb;
+
+    private float speedMultiplier = 1f;
+    public float SpeedMultiplier { get => speedMultiplier; set => speedMultiplier = (value > 0) ? value : speedMultiplier; }
 
     public Transform Center
     {
@@ -51,7 +56,7 @@ public class CircularMovement : MonoBehaviour
 
     private void Move()
     {
-        currentAngle += angularSpeed * direction * Time.fixedDeltaTime;
+        currentAngle += angularSpeed * SpeedMultiplier * direction * Time.fixedDeltaTime;
         float excess = currentAngle % 360f;
         if(excess > 360f) { currentAngle /= Mathf.FloorToInt(excess); }
         Move(currentAngle);
@@ -69,6 +74,14 @@ public class CircularMovement : MonoBehaviour
 
     public void ChangeDirection()
     {
-        direction *= -1;
+        if (directionChangeEnabled)
+        {
+            direction *= -1;
+        }
+    }
+
+    public void SetDirectionChange(bool active)
+    {
+        directionChangeEnabled = active;
     }
 }
