@@ -23,6 +23,7 @@ public class CircularMovement : MonoBehaviour
 
     Rigidbody2D rb;
 
+    [SerializeField]
     private float speedMultiplier = 1f;
     public float SpeedMultiplier { get => speedMultiplier; set => speedMultiplier = (value > 0) ? value : speedMultiplier; }
 

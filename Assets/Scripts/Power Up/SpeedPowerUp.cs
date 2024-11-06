@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Events;
 
 public class SpeedPowerUp : PowerUp
 {
@@ -12,16 +12,28 @@ public class SpeedPowerUp : PowerUp
     [SerializeField]
     float reloadingTime;
 
+    public UnityEvent<float> OnChargeUpdate;
+
     [Header("Debug")]
     [SerializeField]
-    private float charge = 0;
+    private float m_charge = 0;
+
+    public float Charge
+    {
+        get => m_charge;
+        private set
+        {
+            m_charge = value;
+            OnChargeUpdate?.Invoke(m_charge / 100);
+        }
+    }
 
     GameObject currentTarget;
     Health targetHealth;
     Collider2D targetCollider;
     CircularMovement targetMovement;
 
-    public bool FullCharge { get => charge == 100; }
+    public bool FullCharge { get => m_charge == 100; }
 
     Coroutine currentState;
 
@@ -57,11 +69,11 @@ public class SpeedPowerUp : PowerUp
         targetMovement.SetDirectionChange(false);
         SetInvincibility(true);
         float time = activeTime;
-        while(charge > 0)
+        while(Charge > 0)
         {
             yield return null;
             time -= Time.deltaTime;
-            charge = Mathf.Lerp(0, 100, time/activeTime);
+            Charge = Mathf.Lerp(0, 100, time/activeTime);
         }
         targetMovement.SpeedMultiplier = 1f;
         SetInvincibility(false);
@@ -77,11 +89,11 @@ public class SpeedPowerUp : PowerUp
     private IEnumerator PowerUpReloading()
     {
         float time = reloadingTime;
-        while (charge < 100)
+        while (Charge < 100)
         {
             yield return null;
             time -= Time.deltaTime;
-            charge = Mathf.Lerp(100, 0, time / reloadingTime);
+            Charge = Mathf.Lerp(100, 0, time / reloadingTime);
         }
         currentState = null;
     }
