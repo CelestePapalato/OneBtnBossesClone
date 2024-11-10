@@ -103,4 +103,18 @@ public class CircularMovement : MonoBehaviour
     {
         directionChangeEnabled = active;
     }
+
+    public Vector3 GetPoint(float degrees)
+    {
+        float rad = Mathf.Deg2Rad * degrees;
+        float x = Mathf.Cos(rad);
+        float y = Mathf.Sin(rad);
+        return new Vector3(x, y, 0) * radius + center_position;
+    }
+
+    public Vector3 GetRandomPoint()
+    {
+        float degrees = Random.Range(0f, 360f);
+        return GetPoint(degrees);
+    }
 }

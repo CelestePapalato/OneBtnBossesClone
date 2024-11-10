@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent (typeof(DestroyOnTrigger))]
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float speed;
@@ -23,10 +24,5 @@ public class Projectile : MonoBehaviour
     {
         Vector2 delta = speed * Time.fixedDeltaTime * transform.up;
         rb.MovePosition(delta + rb.position);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Destroy(gameObject);
     }
 }
