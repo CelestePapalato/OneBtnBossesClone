@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581c0000b87af5c469a8489e9f0edde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 200
   invincibilityTimer: 0
 --- !u!58 &358006471
 CircleCollider2D:
@@ -743,6 +743,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2947856079963488068, guid: fcae108b4f02c3b42b2264e97f3188e7, type: 3}
   spawnPoint: {fileID: 1904760802}
   fireRate: 0.2
+  target: {fileID: 28863948}
   randomizeDirection: 0
 --- !u!1 &596593407
 GameObject:
@@ -2644,6 +2645,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5639301975045877093, guid: daf306872facb394cb65a0ce75f54265, type: 3}
   spawnPoint: {fileID: 1406743127}
   fireRate: 0.3
+  target: {fileID: 0}
   randomizeDirection: 1
 --- !u!1 &1695731529
 GameObject:

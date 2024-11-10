@@ -14,7 +14,17 @@ public class Shooter : MonoBehaviour
     [SerializeField]
     float fireRate;
     [SerializeField]
+    Transform target;
+    [SerializeField]
     bool randomizeDirection = false;
+
+    private void Start()
+    {
+        if (target)
+        {
+            randomizeDirection = false;
+        }
+    }
 
     private void OnEnable()
     {
@@ -41,8 +51,15 @@ public class Shooter : MonoBehaviour
             float angle = Random.Range(0f, 360f);
             rotation = Quaternion.Euler(0f, 0f, angle);
         }
+        else
+        {
+            Vector2 direction = target.position - spawnPoint.position;
+            float angle = Vector2.SignedAngle(Vector2.up, direction);
+            Debug.Log(angle);
+            rotation = Quaternion.Euler(0f, 0f, angle);
+        }
 
-        Instantiate(projectilePrefab, spawnPoint.position, rotation);
+        Projectile projectile = Instantiate(projectilePrefab, spawnPoint.position, rotation);
     }
 
     public void StopShooting()
