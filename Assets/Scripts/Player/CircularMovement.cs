@@ -29,15 +29,9 @@ public class CircularMovement : MonoBehaviour
     private float speedMultiplier = 1f;
     public float SpeedMultiplier { get => speedMultiplier; set => speedMultiplier = (value > 0) ? value : speedMultiplier; }
 
-    public Transform Center
+    public Vector3 Center
     {
-        get { return center; }
-
-        set
-        {
-            center = (value) ? value : transform;
-            center_position = center.position;
-        }
+        get => center_position;
     }
 
     private void Awake()
@@ -50,7 +44,12 @@ public class CircularMovement : MonoBehaviour
 
         Instance = this;
         currentAngle = startingAngle;
-        Center = center;
+        if (!center)
+        {
+            center = transform;
+
+        }
+        center_position = center.position;
     }
 
     private void Start()
