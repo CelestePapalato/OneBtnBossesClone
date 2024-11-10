@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class CircularMovement : MonoBehaviour
 {
+    public static CircularMovement Instance;
+
     [SerializeField] Transform center;
     [SerializeField] float radius;
     [SerializeField] float angularSpeed;
     [SerializeField]
     [Range(0f, 360f)] float startingAngle;
+
+    [SerializeField]
+    private List<Rigidbody2D> toMove = new List<Rigidbody2D>();
 
     [Header("Debug")]
     [SerializeField]
@@ -20,8 +24,6 @@ public class CircularMovement : MonoBehaviour
     float currentAngle;
     [SerializeField]
     Vector3 center_position;
-
-    Rigidbody2D rb;
 
     [SerializeField]
     private float speedMultiplier = 1f;
@@ -40,19 +42,32 @@ public class CircularMovement : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+
+        Instance = this;
         currentAngle = startingAngle;
         Center = center;
     }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         Move(currentAngle);
     }
 
     private void FixedUpdate()
     {
         Move();
+    }
+
+    public void MoveThis(Rigidbody2D rb)
+    {
+        if (!toMove.Contains(rb)) {
+            toMove.Add(rb);
+        }
     }
 
     private void Move()
@@ -65,12 +80,15 @@ public class CircularMovement : MonoBehaviour
 
     private void Move(float degrees)
     {
-        if (!rb) { return; }
+        if (toMove.Count < 1) { return; }
         float rad = Mathf.Deg2Rad * degrees;
         float x = Mathf.Cos(rad);
         float y = Mathf.Sin(rad);
         Vector3 velocity = radius * new Vector3(x, y, 0);
-        rb.MovePosition(center_position + velocity);
+        foreach(Rigidbody2D rb in toMove)
+        {
+            rb.MovePosition(center_position + velocity);
+        }
     }
 
     public void ChangeDirection()
