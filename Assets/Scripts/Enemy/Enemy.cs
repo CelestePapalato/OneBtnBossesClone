@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     EnemyAttack[] attacks;
+
     void Start()
     {
         attacks = GetComponentsInChildren<EnemyAttack>();

@@ -8,7 +8,7 @@ namespace GameFlow
 { 
     public class GameTimer : MonoBehaviour
     {
-        public static GameTimer Instance;
+        public static GameTimer Instance { get; private set; }
 
         private float timer;
         private bool active = false;

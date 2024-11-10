@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 28863948}
   - component: {fileID: 28863950}
-  - component: {fileID: 28863949}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -159,21 +158,6 @@ Transform:
   - {fileID: 1818297745}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &28863949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28863947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654a2d122e0f7bb4e8e8a73a78ef0961, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 5639301975045877093, guid: daf306872facb394cb65a0ce75f54265, type: 3}
-  spawnPoint: {fileID: 1406743127}
-  fireRate: 1
 --- !u!114 &28863950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,6 +743,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2947856079963488068, guid: fcae108b4f02c3b42b2264e97f3188e7, type: 3}
   spawnPoint: {fileID: 1904760802}
   fireRate: 0.2
+  randomizeDirection: 0
 --- !u!1 &596593407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,6 +2597,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1797647497}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1682624196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682624197}
+  - component: {fileID: 1682624198}
+  m_Layer: 0
+  m_Name: SHOOTER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1682624197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682624196}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1818297745}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1682624198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682624196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 654a2d122e0f7bb4e8e8a73a78ef0961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5639301975045877093, guid: daf306872facb394cb65a0ce75f54265, type: 3}
+  spawnPoint: {fileID: 1406743127}
+  fireRate: 0.3
+  randomizeDirection: 1
 --- !u!1 &1695731529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,7 +2762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  invincibilityTimer: 0
+  invincibilityTimer: 2
 --- !u!1 &1740880632
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,8 +2992,55 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2019709402}
+  - {fileID: 1887879288}
+  - {fileID: 1682624197}
   m_Father: {fileID: 28863948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1887879287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1887879288}
+  - component: {fileID: 1887879289}
+  m_Layer: 0
+  m_Name: RANDOM CONE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1887879288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887879287}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1818297745}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1887879289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887879287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e5bffde5444934d9f697097c9ab3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conePrefab: {fileID: 5581680807400498383, guid: 50379f6ab7ce43b4c8e316a6eb477a98, type: 3}
 --- !u!1 &1904760801
 GameObject:
   m_ObjectHideFlags: 0

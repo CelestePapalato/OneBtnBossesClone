@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CircularMovement : MonoBehaviour
 {
-    public static CircularMovement Instance;
+    public static CircularMovement Instance { get; private set; }
 
     [SerializeField] Transform center;
     [SerializeField] float radius;
