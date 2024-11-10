@@ -89,5 +89,10 @@ namespace GameFlow
             }
             return false;
         }
+
+        public void ExitLevel()
+        {
+            SceneManager.LoadScene("LEVEL SELECTION");
+        }
     }
 }
