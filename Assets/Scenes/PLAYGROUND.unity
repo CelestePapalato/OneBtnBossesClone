@@ -170,6 +170,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7053114c3f7ed76449c6d5fcb26decf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &180119626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180119627}
+  - component: {fileID: 180119628}
+  m_Layer: 6
+  m_Name: SHOOTER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180119627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180119626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560638155}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &180119628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180119626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 654a2d122e0f7bb4e8e8a73a78ef0961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileTag: player_projectile
+  spawnPoint: {fileID: 1904760802}
+  fireRate: 0.2
+  target: {fileID: 28863948}
+  randomizeDirection: 0
 --- !u!1 &209069902
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +695,6 @@ GameObject:
   - component: {fileID: 560638155}
   - component: {fileID: 560638156}
   - component: {fileID: 560638157}
-  - component: {fileID: 560638158}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -671,6 +719,7 @@ Transform:
   - {fileID: 1667224448}
   - {fileID: 1707398501}
   - {fileID: 1533930853}
+  - {fileID: 180119627}
   m_Father: {fileID: 1797647497}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &560638156
@@ -735,23 +784,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &560638158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560638151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654a2d122e0f7bb4e8e8a73a78ef0961, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2947856079963488068, guid: fcae108b4f02c3b42b2264e97f3188e7, type: 3}
-  spawnPoint: {fileID: 1904760802}
-  fireRate: 0.2
-  target: {fileID: 28863948}
-  randomizeDirection: 0
 --- !u!1 &596593407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1094613275}
+  - component: {fileID: 1094613276}
   m_Layer: 0
   m_Name: ObjectPooling
   m_TagString: Untagged
@@ -1853,6 +1886,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1094613276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094613274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff014d5e44293942903910bd0299fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToPool:
+  - tag: player_projectile
+    objectToPool: {fileID: 2474177259372257632, guid: fcae108b4f02c3b42b2264e97f3188e7, type: 3}
+    quantity: 15
+  - tag: enemy_projectile
+    objectToPool: {fileID: 8230551272509263856, guid: daf306872facb394cb65a0ce75f54265, type: 3}
+    quantity: 15
+  - tag: cone_obstacle
+    objectToPool: {fileID: 5581680807400498383, guid: 50379f6ab7ce43b4c8e316a6eb477a98, type: 3}
+    quantity: 3
+  - tag: obstacle
+    objectToPool: {fileID: 2980096660719112321, guid: d9a834b3d2731514bbf48e6eb9230744, type: 3}
+    quantity: 3
 --- !u!1 &1130306410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,6 +2077,37 @@ Transform:
   - {fileID: 1740880636}
   - {fileID: 209069903}
   - {fileID: 311852176}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1366133862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1366133863}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1366133863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366133862}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.10593426, y: -1.24187, z: 0.060193934}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1406743125
@@ -2764,7 +2853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654a2d122e0f7bb4e8e8a73a78ef0961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 5639301975045877093, guid: daf306872facb394cb65a0ce75f54265, type: 3}
+  projectileTag: enemy_projectile
   spawnPoint: {fileID: 1406743127}
   fireRate: 0.4
   target: {fileID: 0}
@@ -3218,7 +3307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e5bffde5444934d9f697097c9ab3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conePrefab: {fileID: 5581680807400498383, guid: 50379f6ab7ce43b4c8e316a6eb477a98, type: 3}
+  coneTag: cone_obstacle
   attackRate: 8
 --- !u!1 &1904760801
 GameObject:
@@ -3518,7 +3607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45e6cc5af15b17488468e728a6fecdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 2980096660719112321, guid: d9a834b3d2731514bbf48e6eb9230744, type: 3}
+  obstacleTag: obstacle
   waitTime: 5
   attackRate: 5
 --- !u!1 &2028662789
@@ -3791,3 +3880,4 @@ SceneRoots:
   - {fileID: 1323019686}
   - {fileID: 641635716}
   - {fileID: 1094613275}
+  - {fileID: 1366133863}

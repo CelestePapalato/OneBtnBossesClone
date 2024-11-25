@@ -5,7 +5,7 @@ using UnityEngine;
 public class RandomObstacle : EnemyAttack
 {
     [SerializeField]
-    GameObject obstaclePrefab;
+    string obstacleTag;
     [SerializeField]
     float waitTime;
     [SerializeField]
@@ -19,8 +19,7 @@ public class RandomObstacle : EnemyAttack
     public override void Attack()
     {
         Vector3 point = CircularMovement.Instance.GetRandomPoint();
-        GameObject Instance = Instantiate(obstaclePrefab, point, Quaternion.identity);
-        Instance.SetActive(true);
+        ObjectPool.Instance.GetObject(obstacleTag, point, Quaternion.identity);
     }
 
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     [SerializeField]
-    Projectile projectilePrefab;
+    string projectileTag;
     [SerializeField]
     Transform spawnPoint;
 
@@ -58,7 +58,7 @@ public class Shooter : MonoBehaviour
             rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
-        Projectile projectile = Instantiate(projectilePrefab, spawnPoint.position, rotation);
+        ObjectPool.Instance.GetObject(projectileTag, spawnPoint.position, rotation);
     }
 
     public void StopShooting()
