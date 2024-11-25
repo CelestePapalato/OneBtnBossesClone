@@ -6,13 +6,14 @@ public class RandomCone : EnemyAttack
 {
     [SerializeField]
     GameObject conePrefab;
+    [SerializeField]
+    float attackRate;
 
     public override void Initialize(GameObject owner)
     {
-        // no es necesario
+        InvokeRepeating(nameof(Attack), attackRate, attackRate);
     }
 
-    [ContextMenu("attack")]
     public override void Attack()
     {
         float angle = Random.Range(0f, 360f);

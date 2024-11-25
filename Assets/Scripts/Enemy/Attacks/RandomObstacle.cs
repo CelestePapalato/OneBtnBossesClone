@@ -8,10 +8,12 @@ public class RandomObstacle : EnemyAttack
     GameObject obstaclePrefab;
     [SerializeField]
     float waitTime;
+    [SerializeField]
+    float attackRate;
 
     public override void Initialize(GameObject owner)
     {
-        StartCoroutine(AttackSequence());
+        InvokeRepeating(nameof(Attack), waitTime, attackRate);
     }
 
     public override void Attack()
@@ -21,9 +23,4 @@ public class RandomObstacle : EnemyAttack
         Instance.SetActive(true);
     }
 
-    IEnumerator AttackSequence()
-    {
-        yield return new WaitForSeconds(waitTime);
-        Attack();
-    }
 }
