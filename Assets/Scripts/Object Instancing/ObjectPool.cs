@@ -13,14 +13,14 @@ public class ObjectPool : MonoBehaviour
         public GameObject objectToPool;
         public int quantity;
     }
-    private class Pool
+    private class Pool : IFactory
     {
         private List<GameObject> objects = new List<GameObject>();
-        private GameObject gameObject;
+        private GameObject product;
 
         public Pool(int quantity, GameObject objectToPool)
         {
-            gameObject = objectToPool;
+            product = objectToPool;
             for (int i = 0; i < quantity; i++)
             {
                 IncreasePool();
@@ -29,13 +29,13 @@ public class ObjectPool : MonoBehaviour
 
         private GameObject IncreasePool()
         {
-            GameObject obj = Instantiate(gameObject);
+            GameObject obj = Instantiate(product);
             obj.SetActive(false);
             objects.Add(obj);
             return obj;
         }
 
-        public GameObject GetObject()
+        public GameObject GetObject(Vector2 position, Quaternion rotation)
         {
             GameObject obj = null;
             foreach (GameObject tmp in objects)
@@ -49,7 +49,10 @@ public class ObjectPool : MonoBehaviour
             if (!obj)
             {
                 obj = IncreasePool();
-            }
+            } 
+            obj.transform.position = position;
+            obj.transform.rotation = rotation;
+            obj.SetActive(true);
             return obj;
         }
     }
@@ -87,24 +90,12 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public GameObject GetObject(string tag)
-    {
-        GameObject obj = null;
-        if (poolData.ContainsKey(tag))
-        {
-            obj = poolData[tag].GetObject();
-        }
-        return obj;
-    }
-
     public GameObject GetObject(string tag, Vector2 position, Quaternion rotation)
     {
-        GameObject obj = GetObject(tag);
-        if(obj != null) 
+        GameObject obj = null; 
+        if (poolData.ContainsKey(tag))
         {
-            obj.transform.position = position;
-            obj.transform.rotation = rotation;
-            obj.SetActive(true);
+            obj = poolData[tag].GetObject(position, rotation);
         }
         return obj;
     }

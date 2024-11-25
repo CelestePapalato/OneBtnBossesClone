@@ -1956,10 +1956,10 @@ MonoBehaviour:
   objectsToPool:
   - tag: player_projectile
     objectToPool: {fileID: 2474177259372257632, guid: fcae108b4f02c3b42b2264e97f3188e7, type: 3}
-    quantity: 15
+    quantity: 10
   - tag: enemy_projectile
     objectToPool: {fileID: 8230551272509263856, guid: daf306872facb394cb65a0ce75f54265, type: 3}
-    quantity: 15
+    quantity: 10
   - tag: cone_obstacle
     objectToPool: {fileID: 5581680807400498383, guid: 50379f6ab7ce43b4c8e316a6eb477a98, type: 3}
     quantity: 3
