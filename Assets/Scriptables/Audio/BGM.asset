@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7e7d45085dcea48b57798a7e5abf09, type: 3}
   m_Name: BGM
   m_EditorClassIdentifier: 
-  audio: []
+  audio:
+  - name: level_1
+    audioClip: {fileID: 8300000, guid: 219bc321a5c2ec349be3994c56cbe9c4, type: 3}

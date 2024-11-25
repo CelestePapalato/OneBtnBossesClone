@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
-{    public static SoundManager Instance { get; private set; }
+{
+    public static SoundManager Instance { get; private set; }
+    public static AudioClip AudioSource2DPrefab { get; private set; }
 
     [SerializeField]
     AudioSource BGMAudioSource;
@@ -25,7 +27,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayBGM(string audioClip, bool loop)
+    public void PlayBGM(string audioClip)
     {
         if (!BGMAudioList || !BGMAudioSource) { return; }
 
@@ -36,13 +38,19 @@ public class SoundManager : MonoBehaviour
         }
         BGMAudioSource.Stop();
         BGMAudioSource.clip = toPlay;
-        BGMAudioSource.loop = loop;
+        BGMAudioSource.loop = true;
         BGMAudioSource.Play();
     }
 
     public void BGMStop()
     {
         BGMAudioSource.Stop();
+    }
+
+    public void PlaySE(string audioClip)
+    {
+        Vector2 point = BGMAudioSource.transform.position;
+        PlaySE(audioClip, point);
     }
 
     public void PlaySE(string audioClip, Vector2 point)

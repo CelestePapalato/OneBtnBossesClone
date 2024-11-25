@@ -3,7 +3,10 @@ guid: f8de956b1e9435b4eb2773955fd1f3e2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - BGMAudioSource: {instanceID: 0}
+  - SEAudioList: {fileID: 11400000, guid: 7fab256ea41ac1c42a636929c010970c, type: 2}
+  - BGMAudioList: {fileID: 11400000, guid: 59ee5bcfb68dda146b253464c5a155c8, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7e7d45085dcea48b57798a7e5abf09, type: 3}
   m_Name: SE
   m_EditorClassIdentifier: 
-  audio: []
+  audio:
+  - name: game_lost
+    audioClip: {fileID: 8300000, guid: e5e834c3b42040b44b386746046ea2e1, type: 3}
+  - name: game_won
+    audioClip: {fileID: 8300000, guid: 7d907422a9501d64393c7080252ed6ee, type: 3}
+  - name: enemy_obstacle_spawn
+    audioClip: {fileID: 8300000, guid: da4ccca28cd25494a83d54cd7c421de1, type: 3}
