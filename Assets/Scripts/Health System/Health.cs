@@ -12,10 +12,33 @@ public class Health : MonoBehaviour
 
     private int health;
     private bool invincible = false;
+    private bool Invincible
+    {
+        get => invincible;
+
+        set
+        {
+            invincible = value;
+            if (invincible)
+            {
+                OnInvincibilityStart?.Invoke();
+            }
+            else
+            {
+                OnInvincibilityEnd?.Invoke();
+            }
+        }
+    }
+
     Collider2D hurtbox;
 
     public UnityAction<int, int> OnDamaged;
     public UnityAction OnDeath;
+
+    public UnityEvent OnInvincibilityStart;
+    public UnityEvent OnInvincibilityEnd;
+
+    bool invincibilityCoroutine = false;
 
     private void Start()
     {
@@ -42,11 +65,29 @@ public class Health : MonoBehaviour
 
     private IEnumerator InvincibilityEnabler()
     {
+        invincibilityCoroutine = true;
         hurtbox.enabled = false;
-        invincible = true;
+        Invincible = true;
         yield return new WaitForSeconds(invincibilityTimer);
+        invincibilityCoroutine = false;
         hurtbox.enabled = true;
-        invincible = false;
+        Invincible = false;
+    }
+
+    public void SetInvincibility(bool value)
+    {
+        if (value)
+        {
+            StopAllCoroutines();
+            invincibilityCoroutine = false;
+            hurtbox.enabled = false;
+            Invincible = value;
+        }
+        else if (!value && !invincibilityCoroutine)
+        {
+            hurtbox.enabled = true;
+            Invincible = value;
+        }
     }
 
 }

@@ -55,7 +55,6 @@ public class Shooter : MonoBehaviour
         {
             Vector2 direction = target.position - spawnPoint.position;
             float angle = Vector2.SignedAngle(Vector2.up, direction);
-            Debug.Log(angle);
             rotation = Quaternion.Euler(0f, 0f, angle);
         }
 

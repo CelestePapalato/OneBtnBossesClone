@@ -30,7 +30,6 @@ public class SpeedPowerUp : PowerUp
 
     GameObject currentTarget;
     Health targetHealth;
-    Collider2D targetCollider;
     CircularMovement targetMovement;
 
     public bool FullCharge { get => m_charge == 100; }
@@ -49,7 +48,6 @@ public class SpeedPowerUp : PowerUp
         currentTarget = target;
         targetMovement = movementComponent;
         targetHealth = healthComponent;
-        targetCollider = healthComponent.GetComponent<Collider2D>();
         currentState = StartCoroutine(PowerUpReloading());
     }
 
@@ -66,8 +64,8 @@ public class SpeedPowerUp : PowerUp
     {
         if (!FullCharge || !targetMovement) { yield break; }
         targetMovement.SpeedMultiplier = speedMultiplier;
-        targetMovement.SetDirectionChange(false);
-        SetInvincibility(true);
+        targetMovement.EnableDirectionChange(false);
+        targetHealth.SetInvincibility(true);
         float time = activeTime;
         while(Charge > 0)
         {
@@ -76,14 +74,9 @@ public class SpeedPowerUp : PowerUp
             Charge = Mathf.Lerp(0, 100, time/activeTime);
         }
         targetMovement.SpeedMultiplier = 1f;
-        SetInvincibility(false);
-        targetMovement.SetDirectionChange(true);
+        targetHealth.SetInvincibility(false);
+        targetMovement.EnableDirectionChange(true);
         currentState = StartCoroutine(PowerUpReloading());
-    }
-
-    private void SetInvincibility(bool active)
-    {
-        targetCollider.enabled = !active;
     }
 
     private IEnumerator PowerUpReloading()

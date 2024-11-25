@@ -98,7 +98,7 @@ public class CircularMovement : MonoBehaviour
         }
     }
 
-    public void SetDirectionChange(bool active)
+    public void EnableDirectionChange(bool active)
     {
         directionChangeEnabled = active;
     }
