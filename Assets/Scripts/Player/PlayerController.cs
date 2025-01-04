@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-    public UnityEvent OnMoveAbilityInput;
     public UnityEvent OnPauseInput;
     public PowerUp powerUp;
 
@@ -27,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveAbility()
     {
-        OnMoveAbilityInput?.Invoke();
+        if(Time.timeScale == 0f) { return; }
         powerUp?.Use();
     }
 

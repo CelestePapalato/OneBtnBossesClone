@@ -16,7 +16,7 @@ public class SpeedPowerUp : PowerUp
 
     [Header("Debug")]
     [SerializeField]
-    private float m_charge = 0;
+    private float m_charge = 100;
 
     public float Charge
     {
@@ -33,8 +33,8 @@ public class SpeedPowerUp : PowerUp
     CircularMovement targetMovement;
 
     public bool FullCharge { get => m_charge == 100; }
-
-    Coroutine currentState;
+    public bool CanUse { get; private set; } = true;
+    private bool active = false;
 
     public override void Initialize(GameObject target)
     {
@@ -48,46 +48,65 @@ public class SpeedPowerUp : PowerUp
         currentTarget = target;
         targetMovement = movementComponent;
         targetHealth = healthComponent;
-        currentState = StartCoroutine(PowerUpReloading());
+        Charge = m_charge;
+        StartCoroutine(PowerUpReloading());
     }
 
     public override void Use()
     {
-        if (!currentTarget || currentState != null)
+        if (!currentTarget || !CanUse)
         {
             return;
         }
-        currentState = StartCoroutine(EnablePowerUp());
+        if (!active)
+        {
+            StartCoroutine(EnablePowerUp());
+            return;
+        }
+        active = false;
     }
 
     private IEnumerator EnablePowerUp()
     {
-        if (!FullCharge || !targetMovement) { yield break; }
-        targetMovement.SpeedMultiplier = speedMultiplier;
+        if (!targetMovement)
+        {
+            yield break;
+        }
+        active = true;
         targetMovement.EnableDirectionChange(false);
+        targetMovement.SpeedMultiplier = speedMultiplier;
         targetHealth.SetInvincibility(true);
         float time = activeTime;
-        while(Charge > 0)
+        while (Charge > 0 && active != false)
         {
             yield return null;
             time -= Time.deltaTime;
-            Charge = Mathf.Lerp(0, 100, time/activeTime);
+            Charge = Mathf.Lerp(0, 100, time / activeTime);
         }
         targetMovement.SpeedMultiplier = 1f;
         targetHealth.SetInvincibility(false);
         targetMovement.EnableDirectionChange(true);
-        currentState = StartCoroutine(PowerUpReloading());
+        active = false;
+        Debug.Log("desactivando uwu");
+        if (Charge <= 0)
+        {
+            CanUse = false;
+            StartCoroutine(PowerUpReloading());
+        }
     }
 
     private IEnumerator PowerUpReloading()
     {
         float time = reloadingTime;
-        while (Charge < 100)
+        while (!FullCharge)
         {
             yield return null;
             time -= Time.deltaTime;
             Charge = Mathf.Lerp(100, 0, time / reloadingTime);
+            if (!CanUse)
+            {
+                CanUse = FullCharge;
+            }
         }
-        currentState = null;
     }
 }
