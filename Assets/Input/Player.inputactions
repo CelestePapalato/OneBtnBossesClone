@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause Menu",
+                    "type": "Button",
+                    "id": "3578af01-8633-4147-a9f7-efa0c02bd894",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -24,6 +33,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8c23a2d-a7d1-4c2a-9c8b-be4629f6164b",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "620ed6a8-ca11-43ae-a8fa-a9724e418cd2",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

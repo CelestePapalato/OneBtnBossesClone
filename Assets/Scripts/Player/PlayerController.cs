@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     public UnityEvent OnMoveAbilityInput;
+    public UnityEvent OnPauseInput;
     public PowerUp powerUp;
 
     private void OnEnable()
@@ -28,5 +29,10 @@ public class PlayerController : MonoBehaviour
     {
         OnMoveAbilityInput?.Invoke();
         powerUp?.Use();
+    }
+
+    private void OnPauseMenu()
+    {
+        OnPauseInput?.Invoke();
     }
 }
