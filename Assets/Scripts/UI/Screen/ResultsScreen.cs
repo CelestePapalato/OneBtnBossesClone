@@ -39,19 +39,19 @@ public class ResultsScreen : MonoBehaviour
         GameState.Instance.OnGameSessionEnd -= ShowScreen;
     }
 
-    private void ShowScreen(bool state, bool newRecord)
+    private void ShowScreen(SessionData sessionData)
     {
         canvas.enabled = true;
 
         timeText.text = GameTimer.TimeToString(GameTimer.Instance.Timer);
 
-        if (!state)
+        if (sessionData.state == SessionData.STATE.LOST)
         {
             LoseScreen?.SetActive(true);
             return;
         }
         WinScreen?.SetActive(true);
-        if (newRecord)
+        if (sessionData.NewRecord)
         {
             newRecordText?.gameObject.SetActive(true);
         }

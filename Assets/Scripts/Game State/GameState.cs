@@ -5,6 +5,30 @@ using UnityEngine.SceneManagement;
 
 namespace GameFlow
 {
+    public class SessionData
+    {
+        public enum STATE { ONGOING, WON, LOST }
+
+        public STATE state = STATE.ONGOING;
+        public string level;
+        public float lastTime = -1;
+        private float newTime;
+        public float NewTime
+        {
+            get => newTime;
+            set
+            {
+                newTime = value;
+                if ((newTime < lastTime || lastTime < 0) && state == STATE.WON)
+                {
+                    NewRecord = true;
+                }
+            }
+        }
+        public bool NewRecord { get; private set; } = false;
+
+    }
+
     public class GameState : MonoBehaviour
     {
         public static GameState Instance { get; private set; }
@@ -12,6 +36,8 @@ namespace GameFlow
         public enum STATE { GAME_ON_WAIT, GAME_START, GAME_RESTART, GAME_END }
 
         private STATE state;
+
+        private SessionData sessionData;
 
         [SerializeField]
         Health playerHealth;
@@ -21,7 +47,7 @@ namespace GameFlow
         public UnityEvent OnGameStart;
         public UnityEvent OnGameRestart;
         public UnityEvent OnGameEnd;
-        public event Action<bool, bool> OnGameSessionEnd; // el bool indica si fue una victoria o derrota y si superó su tiempo
+        public event Action<SessionData> OnGameSessionEnd; // el bool indica si fue una victoria o derrota y si superó su tiempo
         public UnityEvent OnGameWon;
         public UnityEvent OnGameLost;
 
@@ -36,6 +62,20 @@ namespace GameFlow
             Instance = this;
             state = STATE.GAME_ON_WAIT;
             Time.timeScale = 0f;
+
+            sessionData = CreateSessionData();
+        }
+
+        private SessionData CreateSessionData()
+        {
+            SessionData data = new SessionData();
+            string level = SceneManager.GetActiveScene().name;
+            data.level = level;
+            if (PlayerPrefs.HasKey(level))
+            {
+                data.lastTime = PlayerPrefs.GetFloat(level);
+            }
+            return data;
         }
 
         private void OnEnable()
@@ -61,22 +101,26 @@ namespace GameFlow
 
         public void RestartGame()
         {
+            state = STATE.GAME_RESTART;
             OnGameRestart?.Invoke();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         private void OnPlayerLost()
         {
+            sessionData.state = SessionData.STATE.LOST;
             OnGameEnd?.Invoke();
-            OnGameSessionEnd?.Invoke(false, false);
+            OnGameSessionEnd?.Invoke(sessionData);
             OnGameLost?.Invoke();
             Time.timeScale = 0f;
         }
 
         private void OnPlayerWon()
         {
+            sessionData.state = SessionData.STATE.WON;
+            UpdateTimeRecord();
             OnGameEnd?.Invoke();
-            OnGameSessionEnd?.Invoke(true, UpdateTimeRecord());
+            OnGameSessionEnd?.Invoke(sessionData);
             OnGameWon?.Invoke();
             Time.timeScale = 0f;
         }
@@ -84,10 +128,10 @@ namespace GameFlow
         private bool UpdateTimeRecord()
         {
             float time = GameTimer.Instance.Timer;
-            string playerPrefKey = SceneManager.GetActiveScene().name; 
-            if(time < PlayerPrefs.GetFloat(playerPrefKey) || !PlayerPrefs.HasKey(playerPrefKey))
+            sessionData.NewTime = time;
+            if(sessionData.NewRecord || !PlayerPrefs.HasKey(sessionData.level))
             {
-                PlayerPrefs.SetFloat(playerPrefKey, time);
+                PlayerPrefs.SetFloat(sessionData.level, time);
                 PlayerPrefs.Save();
                 return true;
             }
