@@ -132,6 +132,7 @@ MonoBehaviour:
   speedMultiplier: 1.7
   activeTime: 5
   reloadingTime: 10
+  minChargeForReactivating: 25
   OnChargeUpdate:
     m_PersistentCalls:
       m_Calls:

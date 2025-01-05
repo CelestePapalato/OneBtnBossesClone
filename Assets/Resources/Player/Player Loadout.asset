@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888080ac7f46208409ac23251c2f7807, type: 3}
+  m_Name: Player Loadout
+  m_EditorClassIdentifier: 
+  PowerUp: {fileID: 5996217300989054864, guid: 24ab9283dc8ba70489acca15bedccb0b, type: 3}
+  powerUpData:
+  - id: movement
+    powerUpPrefab: {fileID: 5170623325591750960, guid: fe1ad99d4a76c814ea02195acb1e6e3f, type: 3}
+  - id: speed
+    powerUpPrefab: {fileID: 5996217300989054864, guid: 24ab9283dc8ba70489acca15bedccb0b, type: 3}

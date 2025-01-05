@@ -11,6 +11,10 @@ public class SpeedPowerUp : PowerUp
     float activeTime;
     [SerializeField]
     float reloadingTime;
+    [SerializeField]
+    [Tooltip("Carga mínima necesaria para volver a usar la habilidad " +
+        "si el jugador ha usado la carga por completo")]
+    float minChargeForReactivating = 25f;
 
     public UnityEvent<float> OnChargeUpdate;
 
@@ -76,7 +80,7 @@ public class SpeedPowerUp : PowerUp
         targetMovement.EnableDirectionChange(false);
         targetMovement.SpeedMultiplier = speedMultiplier;
         targetHealth.SetInvincibility(true);
-        float time = activeTime;
+        float time = Charge * activeTime / 100;
         while (Charge > 0 && active != false)
         {
             yield return null;
@@ -87,25 +91,25 @@ public class SpeedPowerUp : PowerUp
         targetHealth.SetInvincibility(false);
         targetMovement.EnableDirectionChange(true);
         active = false;
-        Debug.Log("desactivando uwu");
         if (Charge <= 0)
         {
             CanUse = false;
-            StartCoroutine(PowerUpReloading());
         }
+        StartCoroutine(PowerUpReloading());
     }
 
     private IEnumerator PowerUpReloading()
     {
-        float time = reloadingTime;
-        while (!FullCharge)
+        float time = reloadingTime - (Charge * reloadingTime / 100f);
+
+        while (!FullCharge && !active)
         {
             yield return null;
             time -= Time.deltaTime;
             Charge = Mathf.Lerp(100, 0, time / reloadingTime);
             if (!CanUse)
             {
-                CanUse = FullCharge;
+                CanUse = Charge >= minChargeForReactivating;
             }
         }
     }

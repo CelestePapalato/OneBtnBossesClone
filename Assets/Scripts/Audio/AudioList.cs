@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AudioList", menuName = "Scriptables/Audio List", order = 1)]
+[CreateAssetMenu(fileName = "AudioList", menuName = "Audio/Audio List", order = 1)]
 public class AudioList : ScriptableObject
 {
     [Serializable]

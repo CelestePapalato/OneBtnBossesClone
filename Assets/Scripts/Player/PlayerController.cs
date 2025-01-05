@@ -6,8 +6,14 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    public PlayerLoadout loadout;
+
+    [SerializeField]
+    private Transform playerPivot;
+
     public UnityEvent OnPauseInput;
-    public PowerUp powerUp;
+
+    private PowerUp powerUp;
 
     private void OnEnable()
     {
@@ -17,6 +23,17 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         GameFlow.GameState.Instance?.OnGameStart?.RemoveListener(InitializePowerUps);
+    }
+
+    private void Awake()
+    {
+        InstantiateLoadout();
+    }
+
+    private void InstantiateLoadout()
+    {
+        if (loadout == null) { return; }
+        powerUp = Instantiate(loadout.PowerUp, playerPivot.transform);
     }
 
     private void InitializePowerUps()
