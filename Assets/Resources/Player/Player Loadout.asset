@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PowerUp: {fileID: 5996217300989054864, guid: 24ab9283dc8ba70489acca15bedccb0b, type: 3}
   powerUpData:
-  - id: movement
+  - id: turns
     powerUpPrefab: {fileID: 5170623325591750960, guid: fe1ad99d4a76c814ea02195acb1e6e3f, type: 3}
   - id: speed
     powerUpPrefab: {fileID: 5996217300989054864, guid: 24ab9283dc8ba70489acca15bedccb0b, type: 3}

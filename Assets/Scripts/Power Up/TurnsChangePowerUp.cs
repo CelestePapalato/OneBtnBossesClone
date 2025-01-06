@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DirectionChangePowerUp : PowerUp
+public class TurnsChangePowerUp : PowerUp
 {
     CircularMovement targetMovement;
     public override void Initialize(GameObject target)

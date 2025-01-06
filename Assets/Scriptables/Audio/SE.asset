@@ -19,3 +19,9 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 7d907422a9501d64393c7080252ed6ee, type: 3}
   - name: enemy_obstacle_spawn
     audioClip: {fileID: 8300000, guid: da4ccca28cd25494a83d54cd7c421de1, type: 3}
+  - name: ui_error
+    audioClip: {fileID: 8300000, guid: c17a9b70bf9deb0469f29dfbd5a0cc69, type: 3}
+  - name: ui_accept
+    audioClip: {fileID: 8300000, guid: 2c318cb01cc07904f941d6aee8799b92, type: 3}
+  - name: ui_cancel
+    audioClip: {fileID: 8300000, guid: 8c7abae7de406fd46a9a08d6cbaa69b4, type: 3}
