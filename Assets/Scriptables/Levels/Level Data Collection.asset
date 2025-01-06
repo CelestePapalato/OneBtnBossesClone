@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Level Data Collection
   m_EditorClassIdentifier: 
   LevelScenes:
-  - {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
-  - {fileID: 102900000, guid: 0911f9effb79aac44babadd6cde6f511, type: 3}
+  - PLAYGROUND
+  - LEVEL SELECTION

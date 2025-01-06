@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class LevelSelectionUI : MonoBehaviour
+namespace LevelManager
 {
-    [SerializeField]
-    LevelManagerSO levelsData;
-    [SerializeField]
-    LevelButtonUI levelButtonUI;
-    [SerializeField]
-    Transform buttonsParent;
-
-    private void Start()
+    public class LevelSelectionUI : MonoBehaviour
     {
-        foreach (var levelData in levelsData.LevelScenes) {
-            LevelButtonUI instance = Instantiate(levelButtonUI, buttonsParent);
-            instance.SceneAsset = levelData;
-            if (!PlayerPrefs.HasKey(levelData.name)) { break; }
-        }
-    }
+        [SerializeField]
+        LevelManagerSO levelsData;
+        [SerializeField]
+        LevelButtonUI levelButtonUI;
+        [SerializeField]
+        Transform buttonsParent;
 
+        private void Start()
+        {
+            foreach (var levelData in levelsData.LevelScenes)
+            {
+                LevelButtonUI instance = Instantiate(levelButtonUI, buttonsParent);
+                instance.SceneName = levelData;
+                if (!PlayerPrefs.HasKey(levelData)) { break; }
+            }
+        }
+
+    }
 }
