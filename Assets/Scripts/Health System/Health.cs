@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
 
     Collider2D hurtbox;
 
-    public UnityAction<int, int> OnDamaged;
+    public UnityAction<int, int> OnHealthUpdate;
     public UnityAction OnDeath;
 
     public UnityEvent OnInvincibilityStart;
@@ -44,13 +44,14 @@ public class Health : MonoBehaviour
     {
         health = maxHealth;
         hurtbox = GetComponent<Collider2D>();
+        OnHealthUpdate?.Invoke(health, maxHealth);
     }
 
     private void Damage()
     {
         if(invincible) { return; }
         health = Mathf.Max(health-1, 0);
-        OnDamaged?.Invoke(health, maxHealth);
+        OnHealthUpdate?.Invoke(health, maxHealth);
         if(health <= 0)
         {
             OnDeath?.Invoke();
