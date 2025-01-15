@@ -12,6 +12,10 @@ public class Health : MonoBehaviour
 
     private int health;
     private bool invincible = false;
+
+    public int CurrentHealth { get => health; }
+    public int MaxHealth { get => maxHealth; }
+
     private bool Invincible
     {
         get => invincible;
