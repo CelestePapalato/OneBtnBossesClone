@@ -14,4 +14,9 @@ public class SceneLoader : MonoBehaviour
     }
 
     public string GetCurrentScene { get => SceneManager.GetActiveScene().name; }
+
+    public void ReturnToLevelSelection()
+    {
+        SceneManager.LoadScene("LEVEL SELECTION");
+    }
 }

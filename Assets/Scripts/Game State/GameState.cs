@@ -103,7 +103,6 @@ namespace GameFlow
         {
             state = STATE.GAME_RESTART;
             OnGameRestart?.Invoke();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         private void OnPlayerLost()
@@ -136,11 +135,6 @@ namespace GameFlow
                 return true;
             }
             return false;
-        }
-
-        public void ExitLevel()
-        {
-            SceneManager.LoadScene("LEVEL SELECTION");
         }
     }
 }
