@@ -72,22 +72,23 @@ public class AuthRegister: MonoBehaviour
 
                 if (user != null)
                 {
-                    UserProfile profile = new UserProfile { DisplayName = _userName };
-
-                    var ProfileTask = user.UpdateUserProfileAsync(profile);
-
                     yield return new WaitUntil(predicate: () => RegisterTask.IsCompleted);
 
-                    if(ProfileTask.Exception != null)
+                    UserProfile profile = new UserProfile { DisplayName = _userName };
+                    var ProfileTask = user.UpdateUserProfileAsync(profile);
+
+                    yield return new WaitUntil(() => ProfileTask.IsCompleted);
+
+                    if (ProfileTask.Exception != null)
                     {
                         Debug.Log(message: $"Failed To register task with{RegisterTask.Exception}");
                         FirebaseException firebaseEx = ProfileTask.Exception.GetBaseException() as FirebaseException;
                         AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
                         warningRegisterText.text ="Username Set Failed";
                     }
-
                 }
                 Debug.LogFormat("User Register in succesfully: {0} ({1}", user.DisplayName, user.Email);
+                warningRegisterText.text = $"User Registered succesfully:\n{user.DisplayName}\n{user.Email}";
         }
        
         }

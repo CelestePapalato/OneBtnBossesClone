@@ -3,6 +3,7 @@ using Firebase;
 using Firebase.Auth;
 using TMPro;
 using System.Collections;
+using UnityEngine.Events;
 
 public class AuthLogin : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class AuthLogin : MonoBehaviour
     [SerializeField] private TMP_InputField emailLoginField;
     [SerializeField] private TMP_InputField passwordLoginField;
     [SerializeField] private TMP_Text warningLoginText;
-
+    public UnityEvent OnLoginSuccesful;
 
     private void Awake()
     {
@@ -52,7 +53,7 @@ public class AuthLogin : MonoBehaviour
             FirebaseException firebaseEX = LoginTask.Exception.GetBaseException() as FirebaseException;
             AuthError errorCode = (AuthError)firebaseEX.ErrorCode;
 
-            string message = "Login Failed:" + errorCode;
+            string message = "Login Failed: " + errorCode;
             warningLoginText.text = message;
         }
         else
@@ -61,6 +62,7 @@ public class AuthLogin : MonoBehaviour
 
             user = result.User;
             Debug.LogFormat("Firebase user sign-in successfully: {0} ({1})", user.DisplayName, user.Email);
+            OnLoginSuccesful?.Invoke();
         }
     }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Level Data Collection
   m_EditorClassIdentifier: 
   LevelScenes:
-  - PLAYGROUND
   - LEVEL SELECTION
+  - PLAYGROUND
