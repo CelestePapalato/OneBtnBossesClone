@@ -1,4 +1,3 @@
-using GameFlow;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,19 +14,14 @@ public class PlayerController : MonoBehaviour
 
     private PowerUp powerUp;
 
-    private void OnEnable()
-    {
-        GameFlow.GameState.Instance?.OnGameStart.AddListener(InitializePowerUps);
-    }
-
-    private void OnDisable()
-    {
-        GameFlow.GameState.Instance?.OnGameStart?.RemoveListener(InitializePowerUps);
-    }
-
     private void Awake()
     {
         InstantiateLoadout();
+    }
+
+    private void Start()
+    {
+        InitializePowerUps();
     }
 
     private void InstantiateLoadout()

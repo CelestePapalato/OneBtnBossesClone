@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3220206283015336329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2317322085785562405}
+  - component: {fileID: 7399713895248721331}
+  m_Layer: 0
+  m_Name: ObjectPooling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2317322085785562405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3220206283015336329}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.10593426, y: -1.24187, z: 0.060193934}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7399713895248721331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3220206283015336329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff014d5e44293942903910bd0299fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToPool:
+  - tag: player_projectile
+    objectToPool: {fileID: 2474177259372257632, guid: fcae108b4f02c3b42b2264e97f3188e7, type: 3}
+    quantity: 10
+  - tag: enemy_projectile
+    objectToPool: {fileID: 8230551272509263856, guid: daf306872facb394cb65a0ce75f54265, type: 3}
+    quantity: 10
+  - tag: cone_obstacle
+    objectToPool: {fileID: 5581680807400498383, guid: 50379f6ab7ce43b4c8e316a6eb477a98, type: 3}
+    quantity: 3
+  - tag: obstacle
+    objectToPool: {fileID: 2980096660719112321, guid: d9a834b3d2731514bbf48e6eb9230744, type: 3}
+    quantity: 3

@@ -72,10 +72,6 @@ public class ObjectPool : MonoBehaviour
             return;
         }
         Instance = this;
-    }
-
-    void Start()
-    {
         InitializePool();
     }
 
