@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "Character",
         "Managers",
-        "ObjectPooling"
+        "ObjectPooling",
+        "UI.Healthbar"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

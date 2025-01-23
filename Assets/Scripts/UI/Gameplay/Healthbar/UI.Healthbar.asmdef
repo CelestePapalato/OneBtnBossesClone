@@ -1,0 +1,16 @@
+{
+    "name": "UI.Healthbar",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3e18e06653e6c4c4e92b45eade479d91"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

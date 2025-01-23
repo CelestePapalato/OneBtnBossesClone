@@ -38,6 +38,18 @@ namespace GameFlow
         private STATE state;
 
         private SessionData sessionData;
+        public SessionData CurrentSessionData
+        {
+            get
+            {
+                SessionData copy = new SessionData();
+                copy.state = sessionData.state;
+                copy.level = sessionData.level;
+                copy.lastTime = sessionData.lastTime;
+                copy.NewTime = sessionData.NewTime;
+                return copy;
+            }
+        }
 
         [SerializeField]
         Health playerHealth;
@@ -50,6 +62,36 @@ namespace GameFlow
         public event Action<SessionData> OnGameSessionEnd; // el bool indica si fue una victoria o derrota y si superó su tiempo
         public UnityEvent OnGameWon;
         public UnityEvent OnGameLost;
+
+        public Health PlayerHealth
+        {
+            get => playerHealth; 
+            set
+            {
+                if(state != STATE.GAME_ON_WAIT || !value) { return; }
+                if (playerHealth)
+                {
+                    playerHealth.OnDeath -= OnPlayerLost;
+                }
+                playerHealth = value;
+                playerHealth.OnDeath += OnPlayerLost;
+            }
+        }
+        public Health EnemyHealth
+        {
+            get => enemyHealth;
+            set
+            {
+                if (state != STATE.GAME_ON_WAIT || !value) { return; }
+                if (enemyHealth)
+                {
+                    enemyHealth.OnDeath -= OnPlayerWon;
+                }
+                enemyHealth = value;
+                enemyHealth.OnDeath += OnPlayerWon;
+            }
+        }
+
 
         private void Awake()
         {
@@ -64,6 +106,9 @@ namespace GameFlow
             Time.timeScale = 0f;
 
             sessionData = CreateSessionData();
+
+            EnemyHealth = enemyHealth;
+            PlayerHealth = playerHealth;
         }
 
         private SessionData CreateSessionData()
@@ -78,23 +123,12 @@ namespace GameFlow
             return data;
         }
 
-        private void OnEnable()
-        {
-            playerHealth.OnDeath += OnPlayerLost;
-            enemyHealth.OnDeath += OnPlayerWon;
-        }
-
-        private void OnDisable()
-        {
-            playerHealth.OnDeath -= OnPlayerLost;
-            enemyHealth.OnDeath -= OnPlayerWon;
-        }
-
         public void StartGame()
         {
             if (state == STATE.GAME_ON_WAIT)
             {
                 Time.timeScale = 1f;
+                state = STATE.GAME_START;
                 OnGameStart?.Invoke();
             }
         }
@@ -107,6 +141,7 @@ namespace GameFlow
 
         private void OnPlayerLost()
         {
+            state = STATE.GAME_END;
             sessionData.state = SessionData.STATE.LOST;
             OnGameEnd?.Invoke();
             OnGameSessionEnd?.Invoke(sessionData);
@@ -116,6 +151,7 @@ namespace GameFlow
 
         private void OnPlayerWon()
         {
+            state = STATE.GAME_END;
             sessionData.state = SessionData.STATE.WON;
             UpdateTimeRecord();
             OnGameEnd?.Invoke();

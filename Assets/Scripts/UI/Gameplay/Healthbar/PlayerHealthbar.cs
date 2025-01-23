@@ -12,6 +12,8 @@ public class PlayerHealthbar : Healthbar
     int max;
     int current;
 
+    public int Current { get => current; }
+
     void Awake()
     {
         max = health.MaxHealth;

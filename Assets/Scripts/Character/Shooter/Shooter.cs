@@ -28,6 +28,7 @@ public class Shooter : MonoBehaviour
 
     public void StartShooting()
     {
+        CancelInvoke();
         InvokeRepeating(nameof(Fire), 0, fireRate);
     }
 

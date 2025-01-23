@@ -59,6 +59,8 @@ public class Health : MonoBehaviour
         if(health <= 0)
         {
             OnDeath?.Invoke();
+            hurtbox.enabled = false;
+            return;
         }
         StartCoroutine(InvincibilityEnabler());
     }
