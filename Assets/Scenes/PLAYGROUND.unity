@@ -5350,7 +5350,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1366133865}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SoundManager, Managers
         m_MethodName: PlaySE
         m_Mode: 5
         m_Arguments:
@@ -5365,7 +5365,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1366133865}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SoundManager, Managers
         m_MethodName: BGMStop
         m_Mode: 1
         m_Arguments:
@@ -5373,11 +5373,11 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: game_lost
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1366133865}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SoundManager, Managers
         m_MethodName: PlaySE
         m_Mode: 5
         m_Arguments:
