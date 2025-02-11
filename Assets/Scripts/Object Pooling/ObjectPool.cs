@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
@@ -13,7 +11,7 @@ public class ObjectPool : MonoBehaviour
         public GameObject objectToPool;
         public int quantity;
     }
-    private class Pool : IFactory
+    private class Pool
     {
         private List<GameObject> objects = new List<GameObject>();
         private GameObject product;

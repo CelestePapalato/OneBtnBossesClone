@@ -60,8 +60,6 @@ namespace GameFlow
         public UnityEvent OnGameRestart;
         public UnityEvent OnGameEnd;
         public event Action<SessionData> OnGameSessionEnd; // el bool indica si fue una victoria o derrota y si superó su tiempo
-        public UnityEvent OnGameWon;
-        public UnityEvent OnGameLost;
 
         public Health PlayerHealth
         {
@@ -111,6 +109,12 @@ namespace GameFlow
             PlayerHealth = playerHealth;
         }
 
+        private void OnDestroy()
+        {
+            if(enemyHealth != null) { enemyHealth.OnDeath -= OnPlayerWon; }
+            if(playerHealth != null) { playerHealth.OnDeath -= OnPlayerLost; }
+        }
+
         private SessionData CreateSessionData()
         {
             SessionData data = new SessionData();
@@ -145,7 +149,6 @@ namespace GameFlow
             sessionData.state = SessionData.STATE.LOST;
             OnGameEnd?.Invoke();
             OnGameSessionEnd?.Invoke(sessionData);
-            OnGameLost?.Invoke();
             Time.timeScale = 0f;
         }
 
@@ -156,7 +159,6 @@ namespace GameFlow
             UpdateTimeRecord();
             OnGameEnd?.Invoke();
             OnGameSessionEnd?.Invoke(sessionData);
-            OnGameWon?.Invoke();
             Time.timeScale = 0f;
         }
 
