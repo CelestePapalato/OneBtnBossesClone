@@ -329,14 +329,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 180119626}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654a2d122e0f7bb4e8e8a73a78ef0961, type: 3}
+  m_Script: {fileID: 11500000, guid: e3e51353bff34c24f8d5ad6b42d0dcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectileTag: player_projectile
   spawnPoint: {fileID: 1904760802}
   fireRate: 0.2
   target: {fileID: 28863948}
-  randomizeDirection: 0
 --- !u!1 &209069902
 GameObject:
   m_ObjectHideFlags: 0
@@ -3479,14 +3478,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1682624196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654a2d122e0f7bb4e8e8a73a78ef0961, type: 3}
+  m_Script: {fileID: 11500000, guid: 35bf6d3e42737ee449383766ee9d1f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectileTag: enemy_projectile
-  spawnPoint: {fileID: 1406743127}
+  spawnPoint: {fileID: 28863948}
   fireRate: 0.4
-  target: {fileID: 0}
-  randomizeDirection: 1
 --- !u!1 &1692362471
 GameObject:
   m_ObjectHideFlags: 0
